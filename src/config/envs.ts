@@ -5,6 +5,8 @@ interface EnvVars {
   PORT: number;
   NATS_SERVERS: string[];
   DATABASE_URL: string;
+  JWT_SECRET: string;
+  JWT_EXPIRES_IN: string;
 }
 
 const envsSchema = joi
@@ -12,6 +14,8 @@ const envsSchema = joi
     PORT: joi.number().default(4004),
     NATS_SERVERS: joi.array().items(joi.string()).required(),
     DATABASE_URL: joi.string().required(),
+    JWT_SECRET: joi.string().required(),
+    JWT_EXPIRES_IN: joi.string().default('1d'),
   })
   .unknown(true);
 
